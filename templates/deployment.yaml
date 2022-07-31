@@ -48,7 +48,6 @@ spec:
       - name: {{ template "minecraft.fullname" . }}-mc-backup
         image: "{{ .Values.mcbackup.image.repository }}:{{ .Values.mcbackup.image.tag }}"
         imagePullPolicy: {{ .Values.mcbackup.image.pullPolicy }}
-        args: ["--bonusChest"]
         resources:
 {{ toYaml .Values.mcbackup.resources | indent 10 }}
         env:
@@ -136,6 +135,7 @@ spec:
       - name: {{ template "minecraft.fullname" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        args: ["--bonusChest"]
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         {{- if .Values.startupProbe.enabled }}
