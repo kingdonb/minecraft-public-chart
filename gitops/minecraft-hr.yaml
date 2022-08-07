@@ -14,6 +14,11 @@ spec:
         name: minecraft-public-chart
   interval: 1m0s
   releaseName: my-first-minecraft
+  valuesFrom:
+  - kind: Secret
+    name: minecraft-rcon-password
+    valuesKey: password
+    targetPath: minecraftServer.rcon.password
   values:
     extraEnv:
       ENABLE_ROLLING_LOGS: true
@@ -34,7 +39,6 @@ spec:
       rcon:
         enabled: true
         loadBalancerIP: 10.17.12.204
-        password: SECRETFAKESECRETFAKESECRETFAKESECRET
         serviceType: LoadBalancer
       serviceType: LoadBalancer
       spawnProtection: 32
